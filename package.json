@@ -24,5 +24,6 @@
     "typescript": "^3.3.3333"
   },
   "scripts": {
+    "example": "parcel example/example.html --open --out-dir temp --no-source-maps"
   }
 }

@@ -5,6 +5,7 @@ let promise;
 function onDgViewerLoaded() {
     promiseResolver(true);
 }
+window.onDgViewerLoaded = onDgViewerLoaded;
 // on demand loading of dglux assets
 function loadDglux() {
     if (!promise) {
@@ -53,7 +54,9 @@ function loadDglux() {
     return promise;
 }
 function loadDgluxPage(divId, pagePath) {
-    promise.then(() => {
+    console.log(1111);
+    loadDglux().then(() => {
+        console.log(2222);
         window.postMessage({ 'dgViewerDiv': divId, 'dgPagePath': pagePath }, '*');
     });
 }

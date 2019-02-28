@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>DGLux Pages</title>
+    <style>
+        body {
+            height: 100%;
+        }
+    </style>
+    <script>
+      // work around for parcel hot loader issue
+      // https://github.com/parcel-bundler/parcel/issues/1192
+      window.onerror = function (message, source, lineno, colno, error) {
+        if (message.includes('Maximum call stack size exceeded')) {
+          location.reload();
+        }
+      }
+    </script>
+</head>
+<body>
+<div id="app" style="height:100%"></div>
+
+<!--<script src="./test.js" type="module"></script>-->
+<script src="./example.tsx" async></script>
+</body>
+</html>
