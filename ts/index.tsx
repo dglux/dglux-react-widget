@@ -6,6 +6,8 @@ interface Props {
   page: string;
   className?: string;
   style?: React.CSSProperties;
+
+  [key: string]: any;
 }
 
 interface State {
@@ -40,7 +42,6 @@ export default class DGLuxPage extends React.Component<Props, State> {
       loadDgluxPage(this.id, this.pagePath);
     }
   }
-
 
   shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>, nextContext: any): boolean {
     if (nextProps.style !== this.props.style || nextProps.className !== this.props.className) {
