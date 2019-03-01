@@ -1,7 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import DGLuxPage from "../ts";
-
+import DGLuxPage from "../js";
 
 class App extends React.Component {
   constructor(props) {
@@ -38,7 +37,6 @@ class App extends React.Component {
 }
 
 ReactDOM.render(
-  <App/>
-  ,
+  <App/>,
   document.getElementById('app')
 );
