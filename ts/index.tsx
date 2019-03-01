@@ -25,6 +25,7 @@ export default class DGLuxPage extends React.Component<Props, State> {
 
   id = `dglux-${Math.random().toString(36).substr(2)}`; // generate a random id
   pagePath: string;
+  pageOptions: {[key: string]: any};
 
   rootNode!: HTMLElement;
   getRef = (node: HTMLDivElement): void => {
@@ -34,16 +35,38 @@ export default class DGLuxPage extends React.Component<Props, State> {
     }
   };
 
+  static notShallowEqual(oldMap: {[key: string]: any}, newMap: {[key: string]: any}) {
+    if (newMap) {
+      let keysOld = Object.keys(oldMap);
+      let keysNew = Object.keys(newMap);
+      if (keysNew.length !== keysOld.length) {
+        return true;
+      }
+      for (let key of keysOld) {
+        if (oldMap[key] !== newMap[key]) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
   loadPage(props: Readonly<Props>) {
     let {project, page, className, style, ...pageOptions} = props;
+
     let path = DGLuxPage.getPagePath(props);
     if (path !== this.pagePath) {
       this.pagePath = path;
-      loadDgluxPage(this.id, this.pagePath);
+      this.pageOptions = pageOptions;
+      loadDgluxPage(this.id, this.pagePath, this.pageOptions);
+    } else if (DGLuxPage.notShallowEqual(this.pageOptions, pageOptions)) {
+      this.pageOptions = pageOptions;
+      loadDgluxPage(this.id, null, this.pageOptions);
     }
   }
 
   shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>, nextContext: any): boolean {
+    this.loadPage(nextProps);
     if (nextProps.style !== this.props.style || nextProps.className !== this.props.className) {
       return true;
     }

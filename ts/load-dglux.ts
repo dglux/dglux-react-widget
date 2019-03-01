@@ -16,20 +16,20 @@ function loadDglux(): Promise<any> {
       }
     );
 
-    let dgluxBaseUrl = "https://azure-rnd.iot-dsa.org/";
+    let dgluxBaseUrl = "http://localhost:8080/";
 
     let dgluxcssList = [
-      "dglux.css",
-      "packages/dglux/dock_spawn/resources/css/dock-manager.css",
-      "packages/dglux/view/mapbox-gl.css",
-      "packages/dglux/view/mapbox-gl-draw.css",
-      "packages/dglux/view/view.css",
-      "packages/dglux/view/charts.css",
-      "packages/dglux/view/component.css",
-      "packages/dglux/view/editor.css",
-      "packages/dglux/view/app.css",
-      "packages/dglux/component_editor/datagrid/grid.css",
-      "packages/dglux/tree/tree.css",
+      "core.css",
+      "packages/core/dock_spawn/resources/css/dock-manager.css",
+      "packages/core/view/mapbox-gl.css",
+      "packages/core/view/mapbox-gl-draw.css",
+      "packages/core/view/view.css",
+      "packages/core/view/charts.css",
+      "packages/core/view/component.css",
+      "packages/core/view/editor.css",
+      "packages/core/view/app.css",
+      "packages/core/component_editor/datagrid/grid.css",
+      "packages/core/tree/tree.css",
       "css_tree/_styles.css",
       "assets/fonts/fonts.css"];
 
@@ -65,10 +65,8 @@ function loadDglux(): Promise<any> {
   return promise;
 }
 
-export function loadDgluxPage(divId: string, pagePath: string) {
-  console.log(1111);
+export function loadDgluxPage(divId: string, pagePath?: string, params?: {[key: string]: any}) {
   loadDglux().then(() => {
-    console.log(2222);
-    window.postMessage({'dgViewerDiv': divId, 'dgPagePath': pagePath}, '*');
+    window.postMessage({'dgViewerDiv': divId, 'dgPagePath': pagePath, 'dgPageParams': params}, '*');
   });
 }

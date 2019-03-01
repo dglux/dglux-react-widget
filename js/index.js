@@ -33,15 +33,36 @@ class DGLuxPage extends react_1.default.Component {
             return `lib/${props.project}/index.dg5`;
         }
     }
+    static notShallowEqual(oldMap, newMap) {
+        if (newMap) {
+            let keysOld = Object.keys(oldMap);
+            let keysNew = Object.keys(newMap);
+            if (keysNew.length !== keysOld.length) {
+                return true;
+            }
+            for (let key of keysOld) {
+                if (oldMap[key] !== newMap[key]) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
     loadPage(props) {
         let { project, page, className, style } = props, pageOptions = __rest(props, ["project", "page", "className", "style"]);
         let path = DGLuxPage.getPagePath(props);
         if (path !== this.pagePath) {
             this.pagePath = path;
-            load_dglux_1.loadDgluxPage(this.id, this.pagePath);
+            this.pageOptions = pageOptions;
+            load_dglux_1.loadDgluxPage(this.id, this.pagePath, this.pageOptions);
+        }
+        else if (DGLuxPage.notShallowEqual(this.pageOptions, pageOptions)) {
+            this.pageOptions = pageOptions;
+            load_dglux_1.loadDgluxPage(this.id, null, this.pageOptions);
         }
     }
     shouldComponentUpdate(nextProps, nextState, nextContext) {
+        this.loadPage(nextProps);
         if (nextProps.style !== this.props.style || nextProps.className !== this.props.className) {
             return true;
         }

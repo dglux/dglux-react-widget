@@ -1,1 +1,3 @@
-export declare function loadDgluxPage(divId: string, pagePath: string): void;
+export declare function loadDgluxPage(divId: string, pagePath?: string, params?: {
+    [key: string]: any;
+}): void;
