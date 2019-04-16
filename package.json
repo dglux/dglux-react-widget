@@ -1,16 +1,15 @@
 {
-  "name": "dglux-in-react",
-  "version": "0.0.1",
-  "description": "dglux-in-react",
+  "name": "dglux-react-widget",
+  "version": "0.0.2",
+  "description": "dglux-react-widget",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dglux/dglux-in-react.git"
+    "url": "https://github.com/dglux/dglux-react-widget.git"
   },
   "author": {
     "name": "Rick Zhou",
     "email": "rinick@gmail.com"
   },
-  "license": "APACHE-2.0",
   "devDependencies": {
     "@types/node": "^11.13.4",
     "@types/react": "^16.8.13",
