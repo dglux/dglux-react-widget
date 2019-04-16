@@ -11,11 +11,12 @@
     "email": "rinick@gmail.com"
   },
   "license": "APACHE-2.0",
-
   "devDependencies": {
     "@types/node": "^11.9.5",
     "@types/react": "^16.8.3",
     "@types/react-dom": "^16.8.2",
+    "hapi": "^18.1.0",
+    "inert": "^5.1.2",
     "parcel-bundler": "^1.10.3",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
@@ -24,6 +25,7 @@
     "typescript": "^3.3.3333"
   },
   "scripts": {
-    "example": "parcel example/example.html --open --out-dir temp --no-source-maps"
+    "build": "parcel build example/example.html --out-dir www/react-app --public-url ./ --no-source-maps",
+    "server": "node ./bin/server.js"
   }
 }

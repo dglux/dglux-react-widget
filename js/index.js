@@ -1,4 +1,3 @@
-"use strict";
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -8,13 +7,9 @@ var __rest = (this && this.__rest) || function (s, e) {
             t[p[i]] = s[p[i]];
     return t;
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const react_1 = __importDefault(require("react"));
-const load_dglux_1 = require("./load-dglux");
-class DGLuxPage extends react_1.default.Component {
+import React from "react";
+import { loadDgluxPage } from "./load-dglux";
+export default class DGLuxPage extends React.Component {
     constructor() {
         super(...arguments);
         this.id = `dglux-${Math.random().toString(36).substr(2)}`; // generate a random id
@@ -54,11 +49,11 @@ class DGLuxPage extends react_1.default.Component {
         if (path !== this.pagePath) {
             this.pagePath = path;
             this.pageOptions = pageOptions;
-            load_dglux_1.loadDgluxPage(this.id, this.pagePath, this.pageOptions);
+            loadDgluxPage(this.id, this.pagePath, this.pageOptions);
         }
         else if (DGLuxPage.notShallowEqual(this.pageOptions, pageOptions)) {
             this.pageOptions = pageOptions;
-            load_dglux_1.loadDgluxPage(this.id, null, this.pageOptions);
+            loadDgluxPage(this.id, null, this.pageOptions);
         }
     }
     shouldComponentUpdate(nextProps, nextState, nextContext) {
@@ -70,13 +65,12 @@ class DGLuxPage extends react_1.default.Component {
     }
     render() {
         const { className, style } = this.props;
-        return react_1.default.createElement("div", { ref: this.getRef, id: this.id, className: `dglux_page_root ${className}`, style: style });
+        return React.createElement("div", { ref: this.getRef, id: this.id, className: `dglux_page_root ${className}`, style: style });
     }
     componentWillUnmount() {
         if (this.pagePath) {
-            load_dglux_1.loadDgluxPage(this.id, ''); // unload it
+            loadDgluxPage(this.id, ''); // unload it
         }
     }
 }
-exports.default = DGLuxPage;
 //# sourceMappingURL=index.js.map

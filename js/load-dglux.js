@@ -1,5 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 let promiseResolver;
 let promise;
 function onDgViewerLoaded() {
@@ -12,10 +10,9 @@ function loadDglux() {
         promise = new Promise((resolve, reject) => {
             promiseResolver = resolve;
         });
-        let dgluxBaseUrl = "http://localhost:8080/";
+        let dgluxBaseUrl = "http://localhost:8423/dglux5/";
         let dgluxcssList = [
             "core.css",
-            "packages/core/dock_spawn/resources/css/dock-manager.css",
             "packages/core/view/mapbox-gl.css",
             "packages/core/view/mapbox-gl-draw.css",
             "packages/core/view/view.css",
@@ -23,8 +20,6 @@ function loadDglux() {
             "packages/core/view/component.css",
             "packages/core/view/editor.css",
             "packages/core/view/app.css",
-            "packages/core/component_editor/datagrid/grid.css",
-            "packages/core/tree/tree.css",
             "css_tree/_styles.css",
             "assets/fonts/fonts.css"
         ];
@@ -53,10 +48,9 @@ function loadDglux() {
     }
     return promise;
 }
-function loadDgluxPage(divId, pagePath, params) {
+export function loadDgluxPage(divId, pagePath, params) {
     loadDglux().then(() => {
         window.postMessage({ 'dgViewerDiv': divId, 'dgPagePath': pagePath, 'dgPageParams': params }, '*');
     });
 }
-exports.loadDgluxPage = loadDgluxPage;
 //# sourceMappingURL=load-dglux.js.map

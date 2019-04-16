@@ -14,3 +14,4 @@ build
 /dist/*.*.*
 /tool/**/*.js
 /temp
+www/react-app/*

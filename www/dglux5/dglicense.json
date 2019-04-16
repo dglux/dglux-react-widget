@@ -1,0 +1,19 @@
+{
+ "dglux": {
+  "type": "static",
+  "productId": "react-component",
+  "hosts": [
+   "*"
+  ],
+  "paths": [
+   "*"
+  ],
+  "projs": [
+   "*"
+  ],
+  "licensee": "Rick Zhou",
+  "dist": "DGLogik",
+  "hash": "PTY7JD8rKCg0JiU1"
+ },
+ "sig": "JxSjrb9bdKTy/u041wJ56wM6V2ptbsvRCBANhK7WThmerhawtmp2VH/VJ4ghllHarcrpEYNYYW39R03bhODF+sLBHAgOAFvjX1Omw3X1QuNKDn6HZDnSZCA/pfMqDdqqWozqC0oAmVU6kWe/Mw2c4XUMT2v5lIBQkbZ6c2gZapAmZsvEgCryQ8FtfAGMPHIrUUQBsqPBqrTxJpiFJ38ljA=="
+}
