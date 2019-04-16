@@ -9,7 +9,7 @@
 the example will be served at http://localhost:8423/react-app/example.html
 
 
-### use only the dglux build in your own project
+### use this dglux build in your own project
 
 ```javascript
 import DGLuxPage from "dglux-react-widget";
