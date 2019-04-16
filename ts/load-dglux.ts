@@ -8,15 +8,16 @@ function onDgViewerLoaded() {
 (window as any).onDgViewerLoaded = onDgViewerLoaded;
 
 // on demand loading of dglux assets
-function loadDglux(): Promise<any> {
+function loadDglux(dgluxBaseUrl: string): Promise<any> {
   if (!promise) {
+    if (!dgluxBaseUrl) {
+      dgluxBaseUrl = "http://localhost:8423/dglux5/";
+    }
     promise = new Promise(
       (resolve, reject) => {
         promiseResolver = resolve;
       }
     );
-
-    let dgluxBaseUrl = "http://localhost:8423/dglux5/";
 
     let dgluxcssList = [
       "core.css",
@@ -62,8 +63,8 @@ function loadDglux(): Promise<any> {
   return promise;
 }
 
-export function loadDgluxPage(divId: string, pagePath?: string, params?: {[key: string]: any}) {
-  loadDglux().then(() => {
+export function loadDgluxPage(dgluxBaseUrl: string, divId: string, pagePath?: string, params?: {[key: string]: any}) {
+  loadDglux(dgluxBaseUrl).then(() => {
     window.postMessage({'dgViewerDiv': divId, 'dgPagePath': pagePath, 'dgPageParams': params}, '*');
   });
 }

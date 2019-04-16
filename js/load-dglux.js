@@ -5,12 +5,14 @@ function onDgViewerLoaded() {
 }
 window.onDgViewerLoaded = onDgViewerLoaded;
 // on demand loading of dglux assets
-function loadDglux() {
+function loadDglux(dgluxBaseUrl) {
     if (!promise) {
+        if (!dgluxBaseUrl) {
+            dgluxBaseUrl = "http://localhost:8423/dglux5/";
+        }
         promise = new Promise((resolve, reject) => {
             promiseResolver = resolve;
         });
-        let dgluxBaseUrl = "http://localhost:8423/dglux5/";
         let dgluxcssList = [
             "core.css",
             "packages/core/view/mapbox-gl.css",
@@ -48,8 +50,8 @@ function loadDglux() {
     }
     return promise;
 }
-export function loadDgluxPage(divId, pagePath, params) {
-    loadDglux().then(() => {
+export function loadDgluxPage(dgluxBaseUrl, divId, pagePath, params) {
+    loadDglux(dgluxBaseUrl).then(() => {
         window.postMessage({ 'dgViewerDiv': divId, 'dgPagePath': pagePath, 'dgPageParams': params }, '*');
     });
 }

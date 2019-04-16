@@ -9,6 +9,9 @@ var __rest = (this && this.__rest) || function (s, e) {
 };
 import React from "react";
 import { loadDgluxPage } from "./load-dglux";
+export const BaseUrlContextType = React.createContext(null);
+export const BaseUrlContextProvider = BaseUrlContextType.Provider;
+export const BaseUrlContextConsumer = BaseUrlContextType.Consumer;
 export default class DGLuxPage extends React.Component {
     constructor() {
         super(...arguments);
@@ -45,15 +48,19 @@ export default class DGLuxPage extends React.Component {
     }
     loadPage(props) {
         let { project, page, className, style } = props, pageOptions = __rest(props, ["project", "page", "className", "style"]);
+        let dgluxBaseUrl;
+        if (this.context) {
+            dgluxBaseUrl = this.context.dgluxBaseUrl;
+        }
         let path = DGLuxPage.getPagePath(props);
         if (path !== this.pagePath) {
             this.pagePath = path;
             this.pageOptions = pageOptions;
-            loadDgluxPage(this.id, this.pagePath, this.pageOptions);
+            loadDgluxPage(dgluxBaseUrl, this.id, this.pagePath, this.pageOptions);
         }
         else if (DGLuxPage.notShallowEqual(this.pageOptions, pageOptions)) {
             this.pageOptions = pageOptions;
-            loadDgluxPage(this.id, null, this.pageOptions);
+            loadDgluxPage(dgluxBaseUrl, this.id, null, this.pageOptions);
         }
     }
     shouldComponentUpdate(nextProps, nextState, nextContext) {
@@ -73,4 +80,5 @@ export default class DGLuxPage extends React.Component {
         }
     }
 }
+DGLuxPage.contextType = BaseUrlContextType;
 //# sourceMappingURL=index.js.map

@@ -1,6 +1,14 @@
 import React from "react";
 import {loadDgluxPage} from "./load-dglux";
 
+export interface DGLuxBaseUrlContext {
+  dgluxBaseUrl: string;
+}
+
+export const BaseUrlContextType = React.createContext<DGLuxBaseUrlContext>(null);
+export const BaseUrlContextProvider = BaseUrlContextType.Provider;
+export const BaseUrlContextConsumer = BaseUrlContextType.Consumer;
+
 interface Props {
   project: string;
   page: string;
@@ -10,11 +18,10 @@ interface Props {
   [key: string]: any;
 }
 
-interface State {
+export default class DGLuxPage extends React.Component<Props, any> {
+  static contextType = BaseUrlContextType;
+  context!: DGLuxBaseUrlContext;
 
-}
-
-export default class DGLuxPage extends React.Component<Props, State> {
   static getPagePath(props: Readonly<Props>) {
     if (props.page) {
       return `lib/${props.project}/${props.page}`;
@@ -53,19 +60,23 @@ export default class DGLuxPage extends React.Component<Props, State> {
 
   loadPage(props: Readonly<Props>) {
     let {project, page, className, style, ...pageOptions} = props;
+    let dgluxBaseUrl: string;
+    if (this.context) {
+      dgluxBaseUrl = this.context.dgluxBaseUrl;
+    }
 
     let path = DGLuxPage.getPagePath(props);
     if (path !== this.pagePath) {
       this.pagePath = path;
       this.pageOptions = pageOptions;
-      loadDgluxPage(this.id, this.pagePath, this.pageOptions);
+      loadDgluxPage(dgluxBaseUrl, this.id, this.pagePath, this.pageOptions);
     } else if (DGLuxPage.notShallowEqual(this.pageOptions, pageOptions)) {
       this.pageOptions = pageOptions;
-      loadDgluxPage(this.id, null, this.pageOptions);
+      loadDgluxPage(dgluxBaseUrl, this.id, null, this.pageOptions);
     }
   }
 
-  shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>, nextContext: any): boolean {
+  shouldComponentUpdate(nextProps: Readonly<Props>, nextState: any, nextContext: any): boolean {
     this.loadPage(nextProps);
     if (nextProps.style !== this.props.style || nextProps.className !== this.props.className) {
       return true;

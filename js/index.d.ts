@@ -1,4 +1,10 @@
 import React from "react";
+export interface DGLuxBaseUrlContext {
+    dgluxBaseUrl: string;
+}
+export declare const BaseUrlContextType: React.Context<DGLuxBaseUrlContext>;
+export declare const BaseUrlContextProvider: React.ProviderExoticComponent<React.ProviderProps<DGLuxBaseUrlContext>>;
+export declare const BaseUrlContextConsumer: React.ExoticComponent<React.ConsumerProps<DGLuxBaseUrlContext>>;
 interface Props {
     project: string;
     page: string;
@@ -6,9 +12,9 @@ interface Props {
     style?: React.CSSProperties;
     [key: string]: any;
 }
-interface State {
-}
-export default class DGLuxPage extends React.Component<Props, State> {
+export default class DGLuxPage extends React.Component<Props, any> {
+    static contextType: React.Context<DGLuxBaseUrlContext>;
+    context: DGLuxBaseUrlContext;
     static getPagePath(props: Readonly<Props>): string;
     id: string;
     pagePath: string;
@@ -23,7 +29,7 @@ export default class DGLuxPage extends React.Component<Props, State> {
         [key: string]: any;
     }): boolean;
     loadPage(props: Readonly<Props>): void;
-    shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>, nextContext: any): boolean;
+    shouldComponentUpdate(nextProps: Readonly<Props>, nextState: any, nextContext: any): boolean;
     render(): React.ReactNode;
     componentWillUnmount(): void;
 }
