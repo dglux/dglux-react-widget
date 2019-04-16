@@ -2,15 +2,23 @@ function dg_js_init_esri_map(callback) {
     require([
         "esri/Map",
         "esri/views/MapView",
+        "esri/views/SceneView",
+        "esri/geometry/Geometry",
         "esri/geometry/Point",
         "esri/geometry/ScreenPoint",
+        "esri/geometry/Extent",
+        "esri/geometry/SpatialReference",
         "esri/layers/FeatureLayer"
-    ], function(Map, MapView, Point, ScreenPoint, FeatureLayer) {
+    ], function(Map, MapView, SceneView, Geometry, Point, ScreenPoint, Extent, SpatialReference, FeatureLayer) {
         var context = {};
         context['Map'] = Map;
         context['MapView'] = MapView;
+        context['SceneView'] = SceneView;
+        context['Geometry'] = Geometry;
         context['Point'] = Point;
         context['ScreenPoint'] = ScreenPoint;
+        context['Extent'] = Extent;
+        context['SpatialReference'] = SpatialReference;
 
         if (!CSSStyleSheet.prototype.removeRule) {
             CSSStyleSheet.prototype.removeRule = CSSStyleSheet.prototype.deleteRule;
