@@ -63,8 +63,13 @@ function loadDglux(dgluxBaseUrl: string): Promise<any> {
   return promise;
 }
 
-export function loadDgluxPage(dgluxBaseUrl: string, divId: string, pagePath?: string, params?: {[key: string]: any}) {
+export function loadDgluxPage(dgluxBaseUrl: string, divId: string, pagePath?: string, params?: {[key: string]: any}, vendor?: string) {
   loadDglux(dgluxBaseUrl).then(() => {
-    window.postMessage({'dgViewerDiv': divId, 'dgPagePath': pagePath, 'dgPageParams': params}, '*');
+    window.postMessage({
+      'dgViewerDiv': divId,
+      'dgPagePath': pagePath,
+      'dgPageParams': params,
+      'dgUseVendorDir': vendor != null
+    }, '*');
   });
 }

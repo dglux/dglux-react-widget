@@ -6,6 +6,7 @@ export declare const BaseUrlContextType: React.Context<DGLuxBaseUrlContext>;
 export declare const BaseUrlContextProvider: React.ProviderExoticComponent<React.ProviderProps<DGLuxBaseUrlContext>>;
 export declare const BaseUrlContextConsumer: React.ExoticComponent<React.ConsumerProps<DGLuxBaseUrlContext>>;
 interface Props {
+    vendor?: string;
     project: string;
     page: string;
     className?: string;

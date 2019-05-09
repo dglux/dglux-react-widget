@@ -24,11 +24,15 @@ export default class DGLuxPage extends React.Component {
         };
     }
     static getPagePath(props) {
+        let { project, page, vendor } = props;
+        if (vendor) {
+            project = `${project}@${vendor}`;
+        }
         if (props.page) {
-            return `lib/${props.project}/${props.page}`;
+            return `lib/${project}/${page}`;
         }
         else {
-            return `lib/${props.project}/index.dg5`;
+            return `lib/${project}/index.dg5`;
         }
     }
     static notShallowEqual(oldMap, newMap) {
@@ -47,7 +51,7 @@ export default class DGLuxPage extends React.Component {
         return false;
     }
     loadPage(props) {
-        let { project, page, className, style } = props, pageOptions = __rest(props, ["project", "page", "className", "style"]);
+        let { project, page, className, style, vendor } = props, pageOptions = __rest(props, ["project", "page", "className", "style", "vendor"]);
         let dgluxBaseUrl;
         if (this.context) {
             dgluxBaseUrl = this.context.dgluxBaseUrl;
@@ -56,11 +60,11 @@ export default class DGLuxPage extends React.Component {
         if (path !== this.pagePath) {
             this.pagePath = path;
             this.pageOptions = pageOptions;
-            loadDgluxPage(dgluxBaseUrl, this.id, this.pagePath, this.pageOptions);
+            loadDgluxPage(dgluxBaseUrl, this.id, this.pagePath, this.pageOptions, vendor);
         }
         else if (DGLuxPage.notShallowEqual(this.pageOptions, pageOptions)) {
             this.pageOptions = pageOptions;
-            loadDgluxPage(dgluxBaseUrl, this.id, null, this.pageOptions);
+            loadDgluxPage(dgluxBaseUrl, this.id, null, this.pageOptions, vendor);
         }
     }
     shouldComponentUpdate(nextProps, nextState, nextContext) {

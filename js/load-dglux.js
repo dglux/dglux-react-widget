@@ -50,9 +50,14 @@ function loadDglux(dgluxBaseUrl) {
     }
     return promise;
 }
-export function loadDgluxPage(dgluxBaseUrl, divId, pagePath, params) {
+export function loadDgluxPage(dgluxBaseUrl, divId, pagePath, params, vendor) {
     loadDglux(dgluxBaseUrl).then(() => {
-        window.postMessage({ 'dgViewerDiv': divId, 'dgPagePath': pagePath, 'dgPageParams': params }, '*');
+        window.postMessage({
+            'dgViewerDiv': divId,
+            'dgPagePath': pagePath,
+            'dgPageParams': params,
+            'dgUseVendorDir': vendor != null
+        }, '*');
     });
 }
 //# sourceMappingURL=load-dglux.js.map
