@@ -30,11 +30,11 @@ class App extends React.Component {
           <input defaultValue='blue' onChange={this.onInput1Change}/>
           <input defaultValue='abcd' onChange={this.onInput2Change}/>
 
-          <DGLuxPage project='example' page='page1.dg5' value={value} style={{
+          <DGLuxPage vendor='vendor1' project='example' page='page1.dg5' value={value} style={{
             border: 'solid 1px white', position: 'relative', flex: '0 0 100%',
             height: 300
           }}/>
-          <DGLuxPage project='example' page='page2.dg5' bg={bg} string={string} style={{
+          <DGLuxPage  vendor='vendor1' project='example' page='page2.dg5' bg={bg} string={string} style={{
             border: 'solid 1px white', position: 'relative',
             width: 300, height: 300
           }}/>
