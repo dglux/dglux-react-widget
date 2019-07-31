@@ -21,7 +21,6 @@ function loadDglux(dgluxBaseUrl) {
             "packages/core/view/charts.css",
             "packages/core/view/component.css",
             "packages/core/view/editor.css",
-            "packages/core/view/app.css",
             "css_tree/_styles.css",
             "assets/fonts/fonts.css"
         ];
