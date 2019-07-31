@@ -1,4 +1,4 @@
-const Hapi = require('hapi');
+const Hapi = require('@hapi/hapi');
 
 const server = Hapi.server({
   port: 8423,
@@ -8,7 +8,7 @@ const server = Hapi.server({
 });
 
 const init = async () => {
-  await server.register(require('inert'));
+  await server.register(require('@hapi/inert'));
 
   server.route({
     method: 'GET',
