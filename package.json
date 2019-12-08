@@ -11,17 +11,17 @@
     "email": "rinick@gmail.com"
   },
   "devDependencies": {
-    "@types/node": "^12.6.8",
-    "@types/react": "^16.8.24",
-    "@types/react-dom": "^16.8.5",
-    "@hapi/hapi": "^18.1.0",
-    "@hapi/inert": "^5.1.3",
-    "parcel-bundler": "^1.12.3",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "tslint": "^5.18.0",
-    "tslint-react": "^4.0.0",
-    "typescript": "^3.5.3"
+    "@hapi/hapi": "^18.4.0",
+    "@hapi/inert": "^5.2.2",
+    "@types/node": "^12.12.14",
+    "@types/react": "^16.9.15",
+    "@types/react-dom": "^16.9.4",
+    "parcel-bundler": "^1.12.4",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "tslint": "^5.20.1",
+    "tslint-react": "^4.1.0",
+    "typescript": "^3.7.3"
   },
   "scripts": {
     "build": "parcel build example/example.html --out-dir www/react-app --public-url ./ --no-source-maps --no-minify",

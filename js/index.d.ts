@@ -3,8 +3,8 @@ export interface DGLuxBaseUrlContext {
     dgluxBaseUrl: string;
 }
 export declare const BaseUrlContextType: React.Context<DGLuxBaseUrlContext>;
-export declare const BaseUrlContextProvider: React.ProviderExoticComponent<React.ProviderProps<DGLuxBaseUrlContext>>;
-export declare const BaseUrlContextConsumer: React.ExoticComponent<React.ConsumerProps<DGLuxBaseUrlContext>>;
+export declare const BaseUrlContextProvider: React.Provider<DGLuxBaseUrlContext>;
+export declare const BaseUrlContextConsumer: React.Consumer<DGLuxBaseUrlContext>;
 interface Props {
     vendor?: string;
     project: string;
